@@ -1,0 +1,12 @@
+# Secrets
+.env
+
+# IntelliJ
+.idea/
+*.iml
+
+# Maven
+target/
+
+# Logs
+*.log

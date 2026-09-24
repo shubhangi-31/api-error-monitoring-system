@@ -1,0 +1,20 @@
+services:
+
+  api-error-monitor:
+    image: api-error-monitor:1.0
+    container_name: api-error-monitor
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: host.docker.internal:29092
+
+  error-processor:
+    image: error-processor:1.0
+    container_name: error-processor
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: host.docker.internal:29092
+      SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3306/error_monitor
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
